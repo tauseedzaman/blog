@@ -1,0 +1,5 @@
+menu{home,categories,contact , about}
+post_table{image, post,auther,category,time}
+comment_table{comment_conetent,post_id,auther}
+category_table{name}
+admin:
