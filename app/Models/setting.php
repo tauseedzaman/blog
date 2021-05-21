@@ -6,12 +6,16 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class comments extends Model
+class setting extends Model
 {
     use HasFactory,SoftDeletes;
     protected $fillable=[
-        'comment_content',
-        'auther',
-        'post_id',
+        'title',
+        'about',
+        'business_email',
+        'business_phone',
+        'logo_path',
+        'logo_icon_path',
+        'favicon_path',
     ];
 }

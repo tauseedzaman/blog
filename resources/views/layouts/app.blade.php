@@ -22,7 +22,7 @@
     {{-- <link href="{{ asset('css/jssor-slider.css') }}" rel="stylesheet"> --}}
     {{-- <link href="{{ asset('css/magnified.css') }}" rel="stylesheet"> --}}
     {{-- <link href="{{ asset('css/style.css') }}" rel="stylesheet"> --}}
-    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}"/>
+    <link rel="stylesheet" href=    "{{ asset('css/bootstrap.min.css') }}"/>
     <link rel="stylesheet" href="{{ asset('css/jquery.smartmenus.bootstrap-4.css') }}"/>
         <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 </head>
@@ -61,7 +61,7 @@
 
                     @guest
                     @if (Route::has('register'))
-                    <li class="nav-item"><a  href="{{ route('register') }}" class="nav-link "><span class="data-hover"data-hover="contact">{{ __('sign up') }}</span></a></li>
+                    <li class="nav-item"><a  href="{{ route('register') }}" class="nav-link "><span class="data-hover"data-hover="sign up">{{ __('sign up') }}</span></a></li>
                      @endif
                     @if (Route::has('login'))
 

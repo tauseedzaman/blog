@@ -6,12 +6,16 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class comments extends Model
+class category extends Model
 {
     use HasFactory,SoftDeletes;
+
     protected $fillable=[
-        'comment_content',
-        'auther',
-        'post_id',
+        'name'
     ];
+
+    public function posts()
+    {
+        return $this->hasMany(posts::class);
+    }
 }

@@ -4,7 +4,7 @@
 <!--/#menu-bar -->
 <section id="page-head" class="col-sm-12">
     <div class="page_title">
-        <h2>Blog Medium Image</h2>
+        <h2>Jobs news home</h2>
     </div>
     <nav id="breadcrumbs">
         <ul>
