@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use phpDocumentor\Reflection\PseudoTypes\False_;
 
 class CreatePostsTable extends Migration
 {
@@ -19,6 +20,7 @@ class CreatePostsTable extends Migration
             $table->string('image');
             $table->text('content');
             $table->string('auther');
+            $table->boolean('published')->default(False);
             $table->timestamps();
             $table->softDeletes();
         });

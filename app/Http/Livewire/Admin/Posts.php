@@ -5,9 +5,11 @@ namespace App\Http\Livewire\Admin;
 use App\Models\category;
 use App\Models\posts as ModelsPosts;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 
 class Posts extends Component
 {
+    use WithFileUploads;
     public $title;
     public $image;
     public $content;
@@ -35,6 +37,7 @@ class Posts extends Component
                 'image'         => $this->storeImage(),
                 'content'         => $this->content,
                 'auther'         => 'tauseed zaman', //auth()->user->name,
+                'published'     => True,
             ]);
 
             $this->post="";

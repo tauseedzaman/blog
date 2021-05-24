@@ -1,9 +1,15 @@
+@extends('admin.layouts.app')
+@section('page') Posts @endsection
+
+@section('content')
 <div class="content">
+    {{-- CKE editor link --}}
+    <script src="https://cdn.ckeditor.com/4.16.1/standard/ckeditor.js"></script>
+
     <div class="container-fluid">
         <div class="row">
                       <div class="col">
                         @if (session()->has('message'))
-
                         <div class="alert alert-success"  >
                             <p  class="close" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
@@ -16,21 +22,18 @@
                     </div>
                     <div class="row p-5" style="margin: 10px">
                         <div class="col p-5">
-                            <div class="text-info" wire:loading>Loading..</div>
-                            <form accept-charset="utf-8" class=" border-2  rounded p-3" wire:submit.prevent="add_category()">
+                            <form action="" method="POST" accept="" accept-charset="utf-8" class=" border-2  rounded p-3" >
                             <h3 class="text-capitalize text-info p-2  mb-3 text-center text-lg rounded" >{{ __("Add New category") }}</h3>
                             <div class="form-group">
                                 <label for="Title">Title</label>
-                                <input type="text" class="form-control" name="Title" wire:model.lazy="title" placeholder="Post Title">
+                                <input type="text" class="form-control" name="Title"  placeholder="Post Title">
                                 @error('title') <span class="text-red-500 text-danger text-xs">{{ $message }}</span> @enderror
                             </div>
 
+
                             <div class="form-group" x-data="{ isUploading: false, progress: 0 }" x-on:livewire-upload-start="isUploading = true" x-on:livewire-upload-finish="isUploading = false" x-on:livewire-upload-error="isUploading = false"  x-on:livewire-upload-progress="progress = $event.detail.progress">
                                 <label class="form-control-label">Post Image</label>
-                                <div class="custom-file">
-                                    <input type="file" wire:model.lazy="image" class="custom-file-input">
-                                    <label class="custom-file-label">Choose Image</label>
-                                </div>
+                                    <input type="file"  class="form-control">
                                 @error('image') <span class="text-red-500 text-danger text-xs">{{ $message }}</span>  @enderror
                                 <br>
                                 <div wire:loading wire:target="image">{{ __('Uploading...') }}</div><br>
@@ -52,7 +55,7 @@
 
                             <div class="form-group">
                                 <label for="cat">Category</label>
-                                <select class="form-control" name="cat" id=""  wire:model.lazy="category">
+                                <select class="form-control" name="cat" id=""   "category">
                                     @forelse ($categories as $category)
                                         <option value="{{ $category->name }}">{{ $category->name }}</option>
                                     @empty
@@ -64,13 +67,18 @@
 
                             <div class="form-group">
                                 <label for="content">Post Content</label>
-                                <textarea name="content" class="form-control" wire:model.lazy="content" id="" cols="30" rows="10" placeholder="Post Title"></textarea>
+                                <textarea name="CKEeditor" id="CKEeditor" rows="10" cols="80" class="form-control"  "content"  placeholder="Post Content"></textarea>
                                 @error('content') <span class="text-red-500 text-danger text-xs">{{ $message }}</span> @enderror
                             </div>
                                 <div class="form-group ">
                                     <input type="submit" class="btn btn-primary " value="{{ $button_text }}">
                                 </div>
-                            </form><hr>
+                                <script>
+                                    CKEDITOR.replace( 'CKEeditor' );
+                                </script>
+                            </form>
+
+                            <hr>
 
                             <h3 class="text-capitalize text-lg text-success text-center rounded" >{{ _("All  categories") }}</h3>
                             <div class="content table-responsive table-full-width">
@@ -113,5 +121,8 @@
 
         </div>
     </div>
+
 </div>
 
+
+@endsection

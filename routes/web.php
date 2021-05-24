@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PostsController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -23,7 +24,12 @@ Route::get('/404', function () {
 
 Route::prefix('admin')->group(function () {
     Route::view('main', 'admin.dashboard')->name('admin.dashboard');
-    Route::view('posts', 'admin.create_post')->name('admin.posts');
+    Route::get('posts',[PostsController::class,'index'])->name('admin.posts');
+    Route::get('posts/create',[PostsController::class,'create'])->name('create_post');
+    Route::post('posts/store',[PostsController::class,'store'])->name('store_post');
+    // Route::view('posts', 'admin.create_post')->name('admin.posts');
+    Route::post('posts/upload_image',[PostsController::class,'uploadImage'])->name('upload');
+
     Route::view('clients', 'admin.users')->name('admin.clients');
     Route::view('comments', 'admin.comments')->name('admin.comments');
     Route::view('settings', 'admin.settings')->name('admin.settings');
