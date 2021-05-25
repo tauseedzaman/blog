@@ -44,7 +44,7 @@
                                             <td>{{ $post->created_at }}</td>
                                             <td class="text-right">
                                                 <button  class="btn " style="background-color:chartreuse;color:blue;border:none;padding:5px 10px;font-size:3rem;border-radius:40px;"><i class="pe-7s-pen"></i></button>
-                                                <button  onclick="return confirm('{{ __('Are You Sure ?')  }}')" class="btn " style="background-color:rgb(157, 160, 14);color:rgb(255, 0, 0);border:none;padding:5px 10px;font-size:3rem;border-radius:40px;"><i class="pe-7s-trash"></i></button>
+                                                <a  href="{{ route('delete_post/{{ $post->id }}') }}"  onclick="return confirm('{{ __('Are You Sure ?')  }}')" class="btn " style="background-color:rgb(157, 160, 14);color:rgb(255, 0, 0);border:none;padding:5px 10px;font-size:3rem;border-radius:40px;"><i class="pe-7s-trash"></i></a>
                                             </td>
                                         </tr>
                                     @empty

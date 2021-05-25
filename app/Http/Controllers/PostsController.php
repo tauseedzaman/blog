@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Storage;
 use Intervention\Image\ImageManager;
 use Intervention\Image\ImageManagerStatic as Image;
 use  Illuminate\Support\Str;
+use Intervention\Image\ImageManagerStatic;
+
 class postsController extends Controller
 {
     /**
@@ -49,33 +51,22 @@ class postsController extends Controller
             'content' => 'required',
             // 'auther' => 'required',
             ]);
+            // dd($request->file('image')->store('storage/posts'));
+            if($path = $request->file('image')->store('posts/', 'public')){
+                posts::create([
+                    'title'         => $request->title,//$path = $request->file('avatar')->store('avatars');
+                    'image'         => $path,
+                    'content'         => $request->content,
+                    'category'         => $request->category,
+                    'auther'         => 'tauseed zaman', //auth()->user->name,
+                    'published'     => True,
+                ]);
+                return redirect(route('admin.posts'));
+            }
+            // dd($path);
 
-        if($request->hasFile('store_post')) {
-            $originName = $request->file('store_post')->getClientOriginalName();
-            $fileName = pathinfo($originName, PATHINFO_FILENAME);
-            $extension = $request->file('store_post')->getClientOriginalExtension();
-            $fileName = $fileName.'_'.time().'.'.$extension;
-
-            $request->file('store_post')->move(public_path('images'), $fileName);
-
-            $CKEditorFuncNum = $request->input('CKEditorFuncNum');
-            $url = asset('images/'.$fileName);
-            $msg = 'Image uploaded successfully';
-            // return $url;
-            // $response = "<script>window.parent.CKEDITOR.tools.callFunction($CKEditorFuncNum, '$url', '$msg')</script>";
-
-            // @header('Content-type: text/html; charset=utf-8');
-            // echo $response;
-        }
-            posts::create([
-            'title'         => $request->title,
-            'image'         => $this->storeImage($request->file('image')),
-            'content'         => $request->content,
-            'auther'         => 'tauseed zaman', //auth()->user->name,
-            'published'     => True,
-        ]);
-        return redirect(route('admin.posts'));
     }
+
     public function uploadImage(Request $request) {
         if($request->hasFile('upload')) {
                    $originName = $request->file('upload')->getClientOriginalName();
@@ -96,16 +87,15 @@ class postsController extends Controller
            }
     public function storeImage($image)
     {
-
-
-
+        dd($image);
         // store image
-        $img = Image::make($image->getRealPath());
-        // $imag   = ImageManagerStatic::make($image)->encode('jpg');
-        $name  = Str::random() . '.' . $image->getClientOriginalExtension();
-        Storage::disk('public')->put($name, $img);
+        // $img = Image::make($image->getRealPath());
+        $imag   = ImageManagerStatic::make($image)->encode('jpg');
+        $name  = Str::random() . '.jpg'; //$image->getClientOriginalExtension();
+        Storage::disk('public')->put($name, $imag);
         return $name;
     }
+
     /**
      * Display the specified resource.
      *
@@ -146,8 +136,8 @@ class postsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function delete($id)
     {
-        //
+
     }
 }
