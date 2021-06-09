@@ -20,6 +20,7 @@ class CreatePostsTable extends Migration
             $table->string('image');
             $table->text('content');
             $table->string('auther');
+            $table->foreignId('category_id')->constraned();
             $table->boolean('published')->default(False);
             $table->timestamps();
             $table->softDeletes();

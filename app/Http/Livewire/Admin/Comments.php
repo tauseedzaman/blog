@@ -8,6 +8,6 @@ class Comments extends Component
 {
     public function render()
     {
-        return view('livewire.admin.comments');
+        return view('livewire.admin.comments')->layout('admin.layouts.app');
     }
 }

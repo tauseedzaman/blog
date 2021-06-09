@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Storage;
 use Intervention\Image\ImageManagerStatic;
 use Illuminate\Support\Str;
 use Livewire\WithFileUploads;
-
+use App\Models\setting;
 class Settings extends Component
 {
     use WithFileUploads;
@@ -33,15 +33,12 @@ class Settings extends Component
 
 
 
-    public function add_settings()
+    public function add_setting()
     {
-
             $this->validate([
                 'title' => 'required',
                 'business_email' => 'required|email',
-                'address' => 'required',
-                'business_phone' => 'required',
-                'working_horse' => 'required',
+                'business_phone' => 'required|min:11',
                 'description' => 'required',
                 ]);
                 if (!$this->c_favicon) {
@@ -65,26 +62,21 @@ class Settings extends Component
                   $logo = $this->storeImage($this->logo);
                 }
 
-            Settings::create([
+            Setting::create([
                 'title'          => $this->title,
                 'business_email' => $this->business_email,
-                'favicon_path'   => ($favicon ?? $this->c_favicon),
-                'address'        => $this->address,
                 'business_phone' => $this->business_phone,
-                'description'    => $this->description,
+                'about'    => $this->description,
+                'favicon_path'   => ($favicon ?? $this->c_favicon),
                 'logo_path'      => ($logo ?? $this->c_logo),
-                'icon_logo_path'      => ($icon_logo ?? $this->c_icon_logo),
-                'working_horse'      => $this->working_horse,
+                'logo_icon_path'      => ($icon_logo ?? $this->c_icon_logo),
             ]);
 
             $this->title="";
             $this->business_email="";
-            $this->favicon="";
-            $this->address="";
             $this->business_phone="";
             $this->description="";
-            $this->address="";
-            $this->working_horse="";
+            $this->favicon="";
             $this->logo="";
             $this->icon_logo="";
             session()->flash('message', 'Operation successfull.');
@@ -93,13 +85,13 @@ class Settings extends Component
 
     public function storeImage($image)
     {
-        if (!$image) {
-            return null;
-        }
-        // $imag   = ImageManagerStatic::make($image)->encode('png');
-        // $name  = Str::random() . '.png';
-        // Storage::disk('public')->put($name, $imag);
-        // return $name;
+        // if (!$image) {
+        //     return null;
+        // }
+        $imag   = ImageManagerStatic::make($image)->encode('png');
+        $name  = Str::random() . '.png';
+        Storage::disk('public')->put($name, $imag);
+        return $name;
     }
 
 
@@ -173,6 +165,6 @@ class Settings extends Component
 
     public function render()
     {
-        return view('livewire.admin.settings');
+        return view('livewire.admin.settings')->layout('admin.layouts.app');
     }
 }

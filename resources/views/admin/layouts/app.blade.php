@@ -127,6 +127,11 @@
                             <i class="pe-7s-albums"></i>
                             <p>Categories</p>
                         </a>
+                    </li><li>
+                        <a href="{{ route('admin.tage') }}">
+                            <i class="pe-7s-albums"></i>
+                            <p>Tages</p>
+                        </a>
                     </li>
                 </ul>
             </div>
@@ -152,6 +157,9 @@
                                 </a>
                             </li>
                             <li>
+                                <a href="#">{{ auth()->user()->name }}</a>
+                            </li>
+                            <li>
                                 <a href="{{ route('logout') }}"
                                 onclick="event.preventDefault();document.getElementById('logout-form').submit();">
                                     <p>Log out</p>
@@ -165,6 +173,7 @@
                     </div>
                 </div>
             </nav>
+            {{ $slot }}
             @yield('content')
     </div>
 </div>

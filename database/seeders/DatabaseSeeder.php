@@ -3,7 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-
+use App\Models\User;
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -15,6 +15,12 @@ class DatabaseSeeder extends Seeder
     {
         // $this->call(PostsSeeder::class);
         $this->call(CategorySeeder::class);
+        $this->call(tageSeeder::class);
         // \App\Models\User::factory(10)->create();
+        User::create([
+            'name' => 'tauseedzaman',
+            'email' => 'tauseedzaman@test.com',
+            'password' => bcrypt('tauseedzaman')
+        ]);
     }
 }

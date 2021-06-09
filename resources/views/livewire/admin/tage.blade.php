@@ -19,11 +19,11 @@
                     <div class="row p-5" style="margin: 10px">
                         <div class="col p-5">
                             <div class="text-info" wire:loading>Loading..</div>
-                            <form accept-charset="utf-8" class=" border-2  rounded p-3" wire:submit.prevent="add_category()">
-                            <h3 class="text-capitalize text-info p-2  mb-3 text-center text-lg rounded" >{{ __("Add New category") }}</h3>
+                            <form accept-charset="utf-8" class=" border-2  rounded p-3" wire:submit.prevent="add_tage()">
+                            <h3 class="text-capitalize text-info p-2  mb-3 text-center text-lg rounded" >{{ __("Add New Tage") }}</h3>
                             <div class="form-group">
-                                <label for="name">Category Name</label>
-                                <input type="text" class="form-control" name="name" wire:model.lazy="name" placeholder="Category Name">
+                                <label for="name">Tage Name</label>
+                                <input type="text" class="form-control" name="name" wire:model.lazy="name" placeholder="Tage Name">
                                 @error('name') <span class="text-red-500 text-danger text-xs">{{ $message }}</span> @enderror
                             </div>
                                 <div class="form-group ">
@@ -31,7 +31,7 @@
                                 </div>
                             </form><hr>
 
-                            <h3 class="text-capitalize text-lg text-success text-center rounded" >{{ _("All  categories") }}</h3>
+                            <h3 class="text-capitalize text-lg text-success text-center rounded" >{{ _("All  Tages") }}</h3>
                             <div class="content table-responsive table-full-width">
                             <table  class="table table-hover table-striped"  style="" id="">
                                 <thead>
@@ -43,14 +43,14 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @forelse ($categories as $category)
+                                    @forelse ($Tages as $Tage)
                                         <tr>
-                                            <td>{{ $category->id }}</td>
-                                            <td>{{ $category->name }}</td>
-                                            <td>{{ $category->created_at }}</td>
+                                            <td>{{ $Tage->id }}</td>
+                                            <td>{{ $Tage->name }}</td>
+                                            <td>{{ $Tage->created_at }}</td>
                                             <td class="text-right">
-                                                <button wire:click="edit({{ $category->id }})" class="btn " style="background-color:chartreuse;color:blue;border:none;padding:5px 10px;font-size:3rem;border-radius:40px;"><i class="pe-7s-pen"></i></button>
-                                                <button wire:click="delete({{ $category->id }})" onclick="return confirm('{{ __('Are You Sure ?')  }}')" class="btn " style="background-color:rgb(157, 160, 14);color:rgb(255, 0, 0);border:none;padding:5px 10px;font-size:3rem;border-radius:40px;"><i class="pe-7s-trash"></i></button>
+                                                <button wire:click="edit({{ $Tage->id }})" class="btn " style="background-color:chartreuse;color:blue;border:none;padding:5px 10px;font-size:3rem;border-radius:40px;"><i class="pe-7s-pen"></i></button>
+                                                <button wire:click="delete({{ $Tage->id }})" onclick="return confirm('{{ __('Are You Sure ?')  }}')" class="btn " style="background-color:rgb(157, 160, 14);color:rgb(255, 0, 0);border:none;padding:5px 10px;font-size:3rem;border-radius:40px;"><i class="pe-7s-trash"></i></button>
                                             </td>
                                         </tr>
                                     @empty
@@ -62,7 +62,7 @@
                                     @endforelse
                                     </tbody>
                              </table>
-                             {{ $categories->links() }}
+                             {{ $Tages->links() }}
                             </div>
                         </div>
              </div>
