@@ -43,28 +43,26 @@ class postsController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->file('image'));
+
         $request->validate([
             'title' => 'required',
             'image' => 'required|mimes:png,jpg,jpeg,ico,svg|max:2048',
             'category' => 'required',
             'content' => 'required',
-            // 'auther' => 'required',
+            'publish' => 'required',
             ]);
-            // dd($request->file('image')->store('storage/posts'));
-            if($path = $request->file('image')->store('posts/', 'public')){
+
+            if($path = $request->file('image')->store('posts', 'public')){
                 posts::create([
-                    'title'         => $request->title,//$path = $request->file('avatar')->store('avatars');
+                    'title'         => $request->title,
                     'image'         => $path,
                     'content'         => $request->content,
-                    'category'         => $request->category,
-                    'auther'         => 'tauseed zaman', //auth()->user->name,
-                    'published'     => True,
+                    'category_id'         => $request->category,
+                    'auther'         => auth()->user()->name,
+                    'published'     => ($request->publish == "publish" ? true:false),
                 ]);
                 return redirect(route('admin.posts'));
             }
-            // dd($path);
-
     }
 
     public function uploadImage(Request $request) {
@@ -87,7 +85,7 @@ class postsController extends Controller
            }
     public function storeImage($image)
     {
-        dd($image);
+        // dd($image);
         // store image
         // $img = Image::make($image->getRealPath());
         $imag   = ImageManagerStatic::make($image)->encode('jpg');
@@ -115,7 +113,12 @@ class postsController extends Controller
      */
     public function edit($id)
     {
-        //
+       $categries = category::all();
+       $post = posts::findOrFail($id);
+       return view('admin.posts.edit',[
+           'categories' => $categries,
+           'post' => $post
+           ]);
     }
 
     /**
@@ -125,9 +128,32 @@ class postsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request,$id)
     {
-        //
+        $request->validate([
+            'title' => 'required',
+            'category' => 'required',
+            'content' => 'required',
+            ]);
+            if($request->file('image')){
+                $request->validate([
+                    'image' => 'required|mimes:png,jpg,jpeg,ico,svg|max:2048',
+                ]);
+            }else{
+
+            }
+                $post = posts::find($id);
+                if($request->file('image')){
+                    unlink($post->image);
+                }
+                $post->title = $request->title;
+                $post->content = $request->content;
+                $post->category_id = $request->category;
+                $post->published = ($request->publish == "publish" ? true:false);
+                $post->auther = auth()->user()->name;
+                $post->image = ($request->image ? $request->file('image')->store('posts', 'public') : posts::findOrFail($request->id)->image);
+                $post->save();
+                return redirect(route('admin.posts'));
     }
 
     /**

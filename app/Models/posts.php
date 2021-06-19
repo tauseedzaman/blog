@@ -14,6 +14,7 @@ class posts extends Model
         'title',
         'image',
         'content',
+        'category_id',
         'auther'
     ];
 

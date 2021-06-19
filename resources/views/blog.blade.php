@@ -17,7 +17,7 @@
 									<span class="month">Nov</span>
 								</div>
 								<figure class="post_img">
-									<a href="#">
+									<a href="{{ url('/') }}">
 										<img src="images/blog/blog_medium_1.png" alt="blog post">
 									</a>
 								</figure>
@@ -167,19 +167,7 @@
 								</div><!-- end site search -->
 							</div>
 
-							<div class="widget widget_categories">
-								<div class="widget_title">
-									<h4><span>Categories</span></h4>
-									</div>
-								<ul class="arrows_list list_style">
-									<li><a href="#"> Grapic Design (10)</a></li>
-									<li><a href="#"> Web Design & Development (25)</a></li>
-									<li><a href="#"> Photography (29)</a></li>
-									<li><a href="#"> Custom Illustrations (19)</a></li>
-									<li><a href="#"> Wordpress Themes(38)</a></li>
-									<li><a href="#"> Videography (33)</a></li>
-								</ul>
-							</div>
+							@include('category')
 
 							<div class="widget widget_about">
 								<div class="widget_title">
@@ -254,26 +242,7 @@
                                 </div>
                             </div>
 
-							<div class="widget widget_tags">
-								<div class="widget_title">
-									<h4><span>Tags Widget</span></h4>
-								</div>
-								<ul class="tags">
-									<li><a href="#"><b>business</b></a></li>
-									<li><a href="#">corporate</a></li>
-									<li><a href="#">css3</a></li>
-									<li><a href="#"><b>html5</b></a></li>
-									<li><a href="#">javascript</a></li>
-									<li><a href="#"><b>jquery</b></a></li>
-									<li><a href="#">multipurpose</a></li>
-									<li><a href="#"><b>mysql</b></a></li>
-									<li><a href="#">portfolio</a></li>
-									<li><a href="#">premium</a></li>
-									<li><a href="#">responsive</a></li>
-									<li><a href="#"><b>theme</b></a></li>
-									<li><a href="#"><b>Yahoo Baba</b></a></li>
-								</ul>
-							</div>
+							@include('tages')
 
 							<div class="widget widget_archives">
 								<div class="widget_title">

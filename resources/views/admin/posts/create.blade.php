@@ -1,4 +1,4 @@
-@extends('admin.layouts.app')
+@extends('admin.layouts.create_post_master')
 @section('page') Posts @endsection
 
 @section('content')
@@ -44,12 +44,21 @@
                                 <label for="category">Category</label>
                                 <select class="form-control" name="category" id="" value="{{ old('category') }}"  >
                                     @forelse ($categories as $category)
-                                        <option value="{{ $category->name }}">{{ $category->name }}</option>
+                                        <option value="{{ $category->id }}">{{ $category->name }}</option>
                                     @empty
                                         <option>{{ __('Null') }}</option>
                                     @endforelse
                                 </select>
                                 @error('category') <span class="text-red-500 text-danger text-xs">{{ $message }}</span> @enderror
+                            </div>
+
+                            <div class="form-group">
+                                <label for="Published">Publish</label><br>
+                                <select class="form-control" name="publish" id="" value="{{ old('publish') }}"  >
+                                        <option value="publish">Publish</option>
+                                        <option value="Draped">Draped</option>
+                                </select>
+                                @error('publish') <span class="text-red-500 text-danger text-xs">{{ $message }}</span> @enderror
                             </div>
 
                             <div class="form-group">

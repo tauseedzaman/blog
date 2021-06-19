@@ -21,13 +21,17 @@ Route::get('/post', function () {
 Route::get('/404', function () {
     return view('404');
 });
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth','checkadmin'])->group(function () {
     Route::prefix('admin')->group(function () {
         Route::view('main', 'admin.dashboard')->name('admin.dashboard');
-        Route::get('posts',[PostsController::class,'index'])->name('admin.posts');
+        // Route::get('posts',[PostsController::class,'index'])->name('admin.posts');
+        Route::get('posts',App\Http\Livewire\Admin\CreatePost::class)->name('admin.posts');
         Route::get('posts/create',[PostsController::class,'create'])->name('create_post');
         Route::post('posts/store',[PostsController::class,'store'])->name('store_post');
         Route::delete('posts/delete/{id}',[PostsController::class,'delete'])->name('delete');
+        Route::get('posts/edit/{id}',[PostsController::class,'edit'])->name('admin.edit_post');
+
+        Route::post('posts/update/{id}',[PostsController::class,'update'])->name('admin.update_post');
         // Route::view('posts', 'admin.create_post')->name('admin.posts');
         Route::post('posts/upload_image',[PostsController::class,'uploadImage'])->name('upload');
 

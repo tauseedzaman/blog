@@ -177,7 +177,7 @@
                         </div>
                     </div>
                 </nav>
-                    {{ $slot }}
+                @yield('content')
             </div>
         </div>
         @livewireScripts
