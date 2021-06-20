@@ -27,7 +27,7 @@
 								<div class="post_content">
 									<div class="post_meta">
 										<h2>
-											<a href="#">{{ $post->title }}</a>
+											<a href="{{ route('post',$post->id) }}">{{ $post->title }}</a>
 										</h2>
 										<div class="metaInfo">
 											<span><i class="fa fa-user"></i> By <a href="#">{{ $post->auther }}</a> </span>

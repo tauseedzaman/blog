@@ -33,7 +33,7 @@
 									<p>{!! $post->content !!}</p>
 
     								</div>
-								<ul class="shares">
+								{{-- <ul class="shares">
 									<li class="shareslabel"><h3>Share This Story</h3></li>
 									<li><a class="twitter" href="#" data-placement="bottom" data-toggle="tooltip" title="Twitter"></a></li>
 									<li><a class="facebook" href="#" data-placement="bottom" data-toggle="tooltip" title="Facebook"></a></li>
@@ -41,59 +41,32 @@
 									<li><a class="pinterest" href="#" data-placement="bottom" data-toggle="tooltip" title="Pinterest"></a></li>
 									<li><a class="yahoo" href="#" data-placement="bottom" data-toggle="tooltip" title="Yahoo"></a></li>
 									<li><a class="linkedin" href="#" data-placement="bottom" data-toggle="tooltip" title="LinkedIn"></a></li>
-								</ul>
+								</ul> --}}
 							</article>
 							<div class="about_author">
-								<div class="author_desc">
+								{{-- <div class="author_desc">
 									<img src="images/blog/author.png" alt="about author">
 									<ul class="author_social">
 										<li><a class="fb" href="#." data-placement="top" data-toggle="tooltip" title="Facbook"><i class="fa fa-facebook"></i></a></li>
 										<li><a class="twtr" href="#." data-placement="top" data-toggle="tooltip" title="Twitter"><i class="fa fa-twitter"></i></a></li>
 										<li><a class="skype" href="#." data-placement="top" data-toggle="tooltip" title="Skype"><i class="fa fa-skype"></i></a></li>
 									</ul>
-								</div>
-								<div class="author_bio">
-									<h3 class="author_name"><a href="#">Tom Jobs</a></h3>
+								</div> --}}
+								{{-- <div class="author_bio">
+									<h3 class="author_name"><a href="#">{{ $post->auther }}</a></h3>
 									<h5>CEO at <a href="#">Yahoo Baba</a></h5>
 									<p class="author_det">
 										Lorem ipsum dolor sit amet, consectetur adip, sed do eiusmod tempor incididunt  ut aut reiciendise voluptat maiores alias consequaturs aut perferendis doloribus omnis saperet docendi nec, eos ea alii molestiae aliquand.
 									</p>
-								</div>
+								</div> --}}
 							</div>
 						</div>
 
 						<!--News Comments-->
-                        <div class="news_comments">
-                            <div class="dividerHeading">
-                                <h4><span>Comments ({{ $post->comments->count() }})</span></h4>
-                            </div>
-                            <div id="comment">
-                                <ul id="comment-list">
-                                    @forelse ($post->comments as $comment)
-                                    <li class="comment">
-                                        <div class="avata   r"><img alt="" src="images/blog/avatar_1.png" class="avatar"></div>
-                                        <div class="comment-container">
-                                            <h4 class="comment-author"><a href="#">{{ $comment->auther }}</a></span></h4>
-                                            <div class="comment-meta"><a href="#" class="comment-date">{{ $comment->created_at->format('F j Y') }}</a><a class="comment-reply-link" href="#respond">Reply &raquo;</a></div>
-                                            <div class="comment-body">
-                                                <p>{{ $comment->comment_content }}</p>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    @empty
-                                </div>
-                                        <p class="text-danger">no comment found</p>
-                                    @endforelse
 
-                                </ul>
-                            </div>
-                            <!-- /#comments -->
-                            <div class="dividerHeading">
-                                <h4><span>Leave a comment</span></h4>
-                                </div>
                                 @livewireStyles()
                                 @livewireScripts()
-                            @livewire('commentform',['post_id' => $post->id])
+                            @livewire('commentform',['comments_Count' => $post->comments->count(),'post_id' => $post->id])
                         </div>
 				    </div>
 
@@ -112,15 +85,15 @@
 							</div>
 
 							@include('category')
-
+{{--
 							<div class="widget widget_about">
 								<div class="widget_title">
 									<h4><span>Basic Text Widget</span></h4>
 									</div>
 								<p>Lorem ipsum dolor sit amet, consectetur adip, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-							</div>
+							</div> --}}
 
-                            <div class="tab" role="tabpanel">
+                            {{-- <div class="tab" role="tabpanel">
                                 <ul class="nav nav-tabs">
                                     <li><a href="#Popular" data-toggle="tab" class="active">Popular</a></li>
                                     <li class=""><a href="#Recent" data-toggle="tab">Recent</a></li>
@@ -183,11 +156,11 @@
                                         </ul>
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
 
 							@include('tages')
 
-							<div class="widget widget_archives">
+							{{-- <div class="widget widget_archives">
 								<div class="widget_title">
 									<h4><span>Archives</span></h4>
 								</div>
@@ -200,7 +173,7 @@
 									<li><a href="#"> June 2015</a></li>
 									<li><a href="#"> May 2015</a></li>
 								</ul>
-							</div>
+							</div> --}}
 						</div>
 					</div>
 				</div><!--/.row-->
