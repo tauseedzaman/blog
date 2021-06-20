@@ -11,130 +11,36 @@
 				<div class="row">
 					<div class="col-md-8">
 						<div class="blog_medium">
+                            {{-- {{ dd($posts) }} --}}
+                            @forelse ($posts as $post)
+
 							<article class="post">
 								<div class="post_date">
-									<span class="day">28</span>
-									<span class="month">Nov</span>
+									<span class="day">{{ $post->created_at->format('d') }}</span>
+									<span class="month">{{ $post->created_at->format('F') }}</span>
 								</div>
 								<figure class="post_img">
-									<a href="{{ url('/') }}">
-										<img src="images/blog/blog_medium_1.png" alt="blog post">
+									<a target="blenk" href="{{ config('app.url').'storage/'.$post->image }}">
+										<img src="{{ config('app.url').'storage/'.$post->image }}" alt="blog post">
 									</a>
 								</figure>
 								<div class="post_content">
 									<div class="post_meta">
 										<h2>
-											<a href="#">perferendis dolor asperio</a>
+											<a href="#">{{ $post->title }}</a>
 										</h2>
 										<div class="metaInfo">
-											<span><i class="fa fa-user"></i> By <a href="#">Louis</a> </span>
-											<span><i class="fa fa-comments"></i> <a href="#">12 Comments</a></span>
+											<span><i class="fa fa-user"></i> By <a href="#">{{ $post->auther }}</a> </span>
+											<span><i class="fa fa-comments"></i> <a href="#">{{ $post->comments->count() }} Comments</a></span>
 										</div>
 									</div>
-									<p>Lorem ipsum dolor sit amet, consectetur adip, sed do eiusmod tempor incididunt  ut aut reiciendise voluptat maiores alias consequaturs aut perferendis doloribus asperiores ut labore.</p>
-									<a class="btn btn-small btn-default" href="#">Read More</a>
-
+									<p >{!! substr($post->content, 0, 150) !!}</p>
+									<a class="btn btn-small btn-default" href="{{ route('post',$post->id) }}">Read More</a>
 								</div>
 							</article>
-
-							<article class="post">
-								<div class="post_date">
-									<span class="day">28</span>
-									<span class="month">Nov</span>
-								</div>
-								<figure class="post_img">
-									<a href="#">
-										<img src="images/blog/blog_medium_2.png" alt="blog post">
-									</a>
-								</figure>
-								<div class="post_content">
-									<div class="post_meta">
-										<h2>
-											<a href="#">perferendis dolor asperio</a>
-										</h2>
-										<div class="metaInfo">
-											<span><i class="fa fa-user"></i> By <a href="#">Louis</a> </span>
-											<span><i class="fa fa-comments"></i> <a href="#">12 Comments</a></span>
-										</div>
-									</div>
-									<p>Lorem ipsum dolor sit amet, consectetur adip, sed do eiusmod tempor incididunt  ut aut reiciendise voluptat maiores alias consequaturs aut perferendis doloribus asperiores ut labore.</p>
-									<a class="btn btn-small btn-default" href="#">Read More</a>
-
-								</div>
-							</article>
-
-							<article class="post">
-								<div class="post_date">
-									<span class="day">28</span>
-									<span class="month">Nov</span>
-								</div>
-								<figure class="post_img">
-									<a href="#">
-										<img src="images/blog/blog_medium_3.png" alt="blog post">
-									</a>
-								</figure>
-								<div class="post_content">
-									<div class="post_meta">
-										<h2>
-											<a href="#">perferendis dolor asperio</a>
-										</h2>
-										<div class="metaInfo">
-											<span><i class="fa fa-user"></i> By <a href="#">Louis</a> </span>
-											<span><i class="fa fa-comments"></i> <a href="#">12 Comments</a></span>
-										</div>
-									</div>
-									<p>Lorem ipsum dolor sit amet, consectetur adip, sed do eiusmod tempor incididunt  ut aut reiciendise voluptat maiores alias consequaturs aut perferendis doloribus asperiores ut labore.</p>
-									<a class="btn btn-small btn-default" href="#">Read More</a>
-
-								</div>
-							</article>
-
-							<article class="post no_images">
-								<div class="post_date">
-									<span class="day">28</span>
-									<span class="month">Nov</span>
-								</div>
-								<div class="post_content">
-									<div class="post_meta">
-										<h2>
-											<a href="#">perferendis dolor asperio</a>
-										</h2>
-										<div class="metaInfo">
-											<span><i class="fa fa-user"></i> By <a href="#">Louis</a> </span>
-											<span><i class="fa fa-comments"></i> <a href="#">12 Comments</a></span>
-										</div>
-									</div>
-									<p>Lorem ipsum dolor sit amet, consectetur adip, sed do eiusmod tempor incididunt  ut aut reiciendise voluptat maiores alias consequaturs aut perferendis doloribus asperiores ut labore.</p>
-									<a class="btn btn-small btn-default" href="#">Read More</a>
-
-								</div>
-							</article>
-
-							<article class="post">
-								<div class="post_date">
-									<span class="day">28</span>
-									<span class="month">Nov</span>
-								</div>
-								<figure class="post_img">
-									<a href="#">
-										<img src="images/blog/blog_medium_4.png" alt="blog post">
-									</a>
-								</figure>
-								<div class="post_content">
-									<div class="post_meta">
-										<h2>
-											<a href="#">perferendis dolor asperio</a>
-										</h2>
-										<div class="metaInfo">
-											<span><i class="fa fa-user"></i> By <a href="#">Louis</a> </span>
-											<span><i class="fa fa-comments"></i> <a href="#">12 Comments</a></span>
-										</div>
-									</div>
-									<p>Lorem ipsum dolor sit amet, consectetur adip, sed do eiusmod tempor incididunt  ut aut reiciendise voluptat maiores alias consequaturs aut perferendis doloribus asperiores ut labore.</p>
-									<a class="btn btn-small btn-default" href="#">Read More</a>
-
-								</div>
-							</article>
+                            @empty
+                            <h1>No Post Fund!</h1>
+                            @endforelse
 
 						</div>
 						<div class="col-lg-12 col-md-12 col-sm-12">
@@ -166,7 +72,6 @@
 									</form>
 								</div><!-- end site search -->
 							</div>
-
 							@include('category')
 
 							<div class="widget widget_about">

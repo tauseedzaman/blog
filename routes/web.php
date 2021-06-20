@@ -5,7 +5,8 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', function () {
-    return view('blog');
+    $posts = App\Models\posts::latest()->get();
+    return view('blog',['posts' => $posts]);
 });
 
 Route::get('/about', function () {
@@ -15,9 +16,10 @@ Route::get('/about', function () {
 Route::get('/contact', function () {
     return view('contact');
 });
-Route::get('/post', function () {
-    return view('blog-post');
-});
+Route::get('/post/{id}', function ($id) {
+    $post = App\Models\posts::find($id);
+    return view('blog-post',['post'=>$post]);
+})->name('post');
 Route::get('/404', function () {
     return view('404');
 });

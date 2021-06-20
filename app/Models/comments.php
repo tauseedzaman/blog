@@ -12,6 +12,7 @@ class comments extends Model
     protected $fillable=[
         'comment_content',
         'auther',
-        'post_id',
+        'posts_id',
+        'email',
     ];
 }

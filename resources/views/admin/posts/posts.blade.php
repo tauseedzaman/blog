@@ -31,6 +31,7 @@
                                 <th>ID</th>
                                 <th>Title</th>
                                 <th>Category</th>
+                                <th>Status</th>
                                 <th>Dated</th>
                                 <th>Actions</th>
                             </tr>
@@ -41,6 +42,7 @@
                                     <td>{{ $post->id }}</td>
                                     <td>{{ $post->title }}</td>
                                     <td>{{ $post->category->name }}</td>
+                                    <td>{{ ($post->published ? 'published' : 'Draped') }}</td>
                                     <td>{{ $post->created_at }}</td>
                                     <td class="text-right">
                                         <button class="btn "
@@ -58,6 +60,7 @@
                                     </td>
                                 </tr>
                             @empty
+                                <td class="text-warning">{{ __('Null') }}</td>
                                 <td class="text-warning">{{ __('Null') }}</td>
                                 <td class="text-warning">{{ __('Null') }}</td>
                                 <td class="text-warning">{{ __('Null') }}</td>
