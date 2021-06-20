@@ -12,50 +12,9 @@
 					<div class="col-md-8">
 						<div class="blog_medium">
                             {{-- {{ dd($posts) }} --}}
-                            @forelse ($posts as $post)
-
-							<article class="post">
-								<div class="post_date">
-									<span class="day">{{ $post->created_at->format('d') }}</span>
-									<span class="month">{{ $post->created_at->format('F') }}</span>
-								</div>
-								<figure class="post_img">
-									<a target="blenk" href="{{ config('app.url').'storage/'.$post->image }}">
-										<img src="{{ config('app.url').'storage/'.$post->image }}" alt="blog post">
-									</a>
-								</figure>
-								<div class="post_content">
-									<div class="post_meta">
-										<h2>
-											<a href="{{ route('post',$post->id) }}">{{ $post->title }}</a>
-										</h2>
-										<div class="metaInfo">
-											<span><i class="fa fa-user"></i> By <a href="#">{{ $post->auther }}</a> </span>
-											<span><i class="fa fa-comments"></i> <a href="#">{{ $post->comments->count() }} Comments</a></span>
-										</div>
-									</div>
-									<p >{!! substr($post->content, 0, 150) !!}</p>
-									<a class="btn btn-small btn-default" href="{{ route('post',$post->id) }}">Read More</a>
-								</div>
-							</article>
-                            @empty
-                            <h1>No Post Fund!</h1>
-                            @endforelse
-
+                            @livewire('mainpage')
 						</div>
-						<div class="col-lg-12 col-md-12 col-sm-12">
-                            <nav aria-label="Page navigation example">
-                                <ul class="pagination">
-                                    <li class="page-item"><a class="page-link" href="#">&laquo;</a></li>
-                                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">4</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">5</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
-                                </ul>
-                            </nav>
-						</div>
+
 
 					</div>
 
